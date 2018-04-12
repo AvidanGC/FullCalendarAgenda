@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="https://fullcalendar.io/releases/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet">
+<link href="https://fullcalendar.io/releases/fullcalendar-scheduler/1.9.4/scheduler.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />	
+
+<style>
+
+	body {
+		margin-top: 20px;
+		text-align: center;
+		font-size: 14px;
+ 		font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
+ 		color: #585353;
+		}
+		
+	#wrap {
+		width: 1100px;
+		margin: 0 auto;
+	}
+
+
+	#calendar {
+        margin: 0 auto;
+		width: 900px;
+		background-color: #FFFFFF;
+		  border-radius: 6px;
+        box-shadow: 0 1px 2px #C3C3C3;
+		}
+    .datepicker table tr td span.active.active,
+    .datepicker table tr td.active.active {
+        background: #2196F3 !important;
+        color: #fff !important;
+    }
+
+    .datepicker table tr td span.focused,
+    .datepicker table tr td.today {
+        background: #D9EDF7 !important;
+        /*D9EDF7 - D3D3D2*/
+    }
+
+    .fc-basic-view .fc-day-number,
+    .fc-basic-view .fc-week-number {
+        padding: 6px !important
+    }
+
+    #datePicker {
+        float: right;
+    }
+    /*#ff3b30*/
+</style>
+</head>
+<body>
+    <div id='wrap'>
+        <div id='calendar'></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://fullcalendar.io/releases/fullcalendar/3.9.0/lib/moment.min.js"></script>
+<script src='fullcalendar.js'></script>
+<script src="https://fullcalendar.io/releases/fullcalendar-scheduler/1.9.4/scheduler.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(function() {
+		/* initialize the external events
+		-----------------------------------------------------------------*/
+		$('#external-events div.external-event').each(function() {
+			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+			// it doesn't need to have a start or end
+			var eventObject = {
+				title: $.trim($(this).text()) // use the element's text as the event title
+			};
+			// store the Event Object in the DOM element so we can get to it later
+			$(this).data('eventObject', eventObject);
+			// make the event draggable using jQuery UI
+			$(this).draggable({
+				zIndex: 999,
+				revert: true,      // will cause the event to go back to its
+				revertDuration: 0  //  original position after the drag
+			});
+
+		});
+
+	var calendar =  $('#calendar').fullCalendar({
+		 schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
+	    header: {
+	      left: 'title',
+	      center: 'timelineDay,timelineWeeks,timelineMonth',
+	      right: 'prev,next today'
+         },
+        themeSystem: 'bootstrap3',
+	    editable: true,
+	    firstDay: 0, 
+	    selectable: true,
+		axisFormat: 'h:mm',
+        defaultView: 'timelineMonth',
+        resourceAreaWidth: '15%',
+        nowIndicator: true,
+	    views: {
+	    	timelineWeeks: {
+	    		   titleFormat: 'MMMM DD YYYY',
+	               type: 'timeline',
+	               buttonText: 'Week',
+	               dateAlignment: "week",
+	               duration: {days:7}
+	          },
+	        month: {
+	        	titleFormat: 'MMMM YYYY',
+	        	buttonText: 'Month'
+	        },
+	        day: {
+	        	titleFormat: 'MMMM DD YYYY',
+	        	buttonText: 'Day'
+	          }
+	      },
+        allDaySlot: true,//cambie a true
+        selectHelper: true,
+		resources: [
+			  { id: 'a', title: 'Agent A' },
+			  { id: 'b', title: 'Agent B' },
+		      { id: 'c', title: 'Agent C' },
+		      { id: 'd', title: 'Agent D' },
+		      { id: 'e', title: 'Agent E' },
+		      { id: 'f', title: 'Agent F' },
+		      { id: 'g', title: 'Agent G' },
+		      { id: 'h', title: 'Agent H' },
+		      { id: 'i', title: 'Agent I' },
+		      { id: 'j', title: 'Agent J' },
+		      { id: 'k', title: 'Agent K' },
+		      { id: 'l', title: 'Agent L' },
+		      { id: 'm', title: 'Agent M' },
+		      { id: 'n', title: 'Agent N' },
+		      { id: 'o', title: 'Agent O' },
+		      { id: 'p', title: 'Agent P' },
+		      { id: 'q', title: 'Agent Q' },
+		      { id: 'r', title: 'Agent R' },
+		      { id: 's', title: 'Agent S' },
+		      { id: 't', title: 'Agent T' },
+		      { id: 'u', title: 'Agent U' },
+		      { id: 'v', title: 'Agent V' },
+		      { id: 'w', title: 'Agent W' },
+		      { id: 'x', title: 'Agent X' },
+		      { id: 'y', title: 'Agent Y' }
+		],
+		 events: [
+			 { id: '1', resourceId: 'a', title:'1024081', start:'2018-04-11T09:00:00', end:'2018-04-10T11:30:00', color:'#13B159' },
+             { id: '2', resourceId: 'a', title:'1024092', start:'2018-04-11T12:00:00', end:'2018-04-10T01:30:00', color:'#2196F3' }
+		]
+	  });
+
+	});
+</script>
+</html>
